@@ -1,15 +1,20 @@
-import Select from './Select'
+import { useState } from 'react'
 
 export default function Form({addTask}) {
+  const [taskName, setTaskName] = useState('');
+  const [executor, setExecutor] = useState('');
+  const [customer, setCustomer] = useState('');
+  const [urgency, setUrgency] = useState('');
+  const [description, setDescription] = useState('');
 
   function addTaskForm(event) {
     event.preventDefault()
     addTask({
-      taskName: event.target.taskName.value, 
-      executor: event.target.executor.value, 
-      customer: event.target.customer.value, 
-      urgency: event.target.urgency.value,
-      description: event.target.description.value,
+      taskName, 
+      executor, 
+      customer, 
+      urgency,
+      description,
       done: false
     })
   }
@@ -32,6 +37,8 @@ export default function Form({addTask}) {
                     name="taskName"
                     id="taskName"
                     autoComplete="taskName"
+                    value={taskName}
+                    onChange={(e) => setTaskName(e.target.value)}
                     className="flex-1 border-0 bg-transparent py-1.5 pl-4 text-white focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="Сверстать страницу регистрации"
                   />
@@ -48,6 +55,8 @@ export default function Form({addTask}) {
                   id="description"
                   name="description"
                   rows={3}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   defaultValue={''}
                 />
@@ -66,6 +75,8 @@ export default function Form({addTask}) {
                     name="customer"
                     id="customer"
                     autoComplete="customer"
+                    value={customer}
+                    onChange={(e) => setCustomer(e.target.value)}
                     className="flex-1 border-0 bg-transparent py-1.5 pl-4 text-white focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="Иванов И.И."
                   />
@@ -84,6 +95,8 @@ export default function Form({addTask}) {
                     name="executor"
                     id="executor"
                     autoComplete="executor"
+                    value={executor}
+                    onChange={(e) => setExecutor(e.target.value)}
                     className="flex-1 border-0 bg-transparent py-1.5 pl-4 text-white focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="Иванов И.И."
                   />
@@ -99,6 +112,7 @@ export default function Form({addTask}) {
                   <input
                     id="push-everything"
                     value="Срочно"
+                    onChange={(e) => setUrgency(e.target.value)}
                     name="urgency"
                     type="radio"
                     className="h-4 w-4 border-white/10 bg-white/5 text-indigo-600 focus:ring-indigo-600 focus:ring-offset-gray-900"
@@ -111,6 +125,7 @@ export default function Form({addTask}) {
                   <input
                     id="push-email"
                     value="Средняя срочность"
+                    onChange={(e) => setUrgency(e.target.value)}
                     name="urgency"
                     type="radio"
                     className="h-4 w-4 border-white/10 bg-white/5 text-indigo-600 focus:ring-indigo-600 focus:ring-offset-gray-900"
@@ -123,6 +138,7 @@ export default function Form({addTask}) {
                   <input
                     id="push-nothing"
                     value="Низкая срочность"
+                    onChange={(e) => setUrgency(e.target.value)}
                     name="urgency"
                     type="radio"
                     className="h-4 w-4 border-white/10 bg-white/5 text-indigo-600 focus:ring-indigo-600 focus:ring-offset-gray-900"
